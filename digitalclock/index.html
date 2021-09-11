@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <title>Digital Clock using HTML, CSS and JavaScript</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<style>
+    body {
+    overflow: hidden;
+    background: #333;
+}
+#clock {
+    background-color: transparent;
+    color: #fff;
+    font-size: 64px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+@media only screen and (max-width: 992px){
+    #clock {
+        font-size: 32px;
+    }
+}
+</style>
+<body>
+    <div id="clock"></div>
+    <script>
+        function Clock(){
+    var date = new Date();
+
+    // hours
+    var hour = date.getHours();
+
+    // minutes
+    var minute = date.getMinutes();
+
+    // seconds
+
+    var second = date.getSeconds();
+
+
+    // Get AM / PM
+
+    var period = "";
+
+    if(hour >=12){
+        period = "PM";
+    }
+    else {
+        period = "AM";
+    }
+
+    // Convert 12-hour format
+
+    if (hour == 0){
+        hour = 12;
+    }
+    else {
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    }
+
+    // updating time
+
+    hour = update(hour);
+    min = update(minute);
+    sec = update(second);
+
+    // add time to html div
+
+    document.getElementById("clock").innerText = hour + " : " + minute + " : " + second + " " + period;
+
+    setTimeout(Clock, 1000);
+
+
+    function update(time){
+        if (time < 10){
+            return "0" + time;
+        }
+        else {
+            return time;
+        }
+    }
+}
+Clock();
+
+
+    </script>
+</body>
+</html>
